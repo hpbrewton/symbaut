@@ -1,9 +1,12 @@
 package edu.wisc.cs.LearnJSON;
 
+import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Collections;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonPrimitive;
 import automata.sfta.Tree;
 
@@ -18,6 +21,7 @@ public class JsonLetter {
 		NULL,
 		BOOL,
 		ARR,
+		ARRS,
 		END
 	}
 
@@ -49,6 +53,7 @@ public class JsonLetter {
 		case STR:
 		case NULL:
 		case ARR:
+		case ARRS:
 		case END:
 			this.cont = cont;
 			break;
@@ -65,6 +70,7 @@ public class JsonLetter {
 		case STR: return ":str";
 		case NULL: return "null";
 		case ARR: return ":arr";
+		case ARRS: return ":arr-start";
 		case END: return ":end";
 		case NUM: return num.toString();	
 		case CHR: return chr.toString();	
@@ -91,6 +97,14 @@ public class JsonLetter {
 				}
 				return new Tree(new JsonLetter(Control.STR), new ArrayList(Arrays.asList(tail)));
 			}
+		} else if (elem.isJsonArray()) {
+			JsonArray arr = elem.getAsJsonArray();
+			Tree tail = new Tree(new JsonLetter(Control.END), new ArrayList<>());
+			
+			for (JsonElement arrElem : Lists.reverse(Lists.newArrayList(arr.iterator()))) {
+				tail = new Tree(new JsonLetter(Control.ARR), new ArrayList(Arrays.asList(treeFromJson(arrElem), tail)));
+			}	
+			return tail;
 		}
 		return null;
 	}

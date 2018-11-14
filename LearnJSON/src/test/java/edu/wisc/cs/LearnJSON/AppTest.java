@@ -31,7 +31,8 @@ public class AppTest
 		JsonElement element;
 		while(parser.hasNext()) {
 			element = parser.next();
-			JsonLetter.treeFromJson(element).debugPrint(0);	
+			Tree<JsonLetter> tree = JsonLetter.treeFromJson(element);
+			tree.debugPrint(0);	
 		}
 	}
 

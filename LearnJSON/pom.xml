@@ -31,5 +31,10 @@
 	  <systemPath>/Users/harrison/symbaut/SVPAlib/target/SVPAlib-1.0.jar</systemPath>
 	  <scope>system</scope>
 	</dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>27.0-jre</version>
+    </dependency>
   </dependencies>
 </project>
