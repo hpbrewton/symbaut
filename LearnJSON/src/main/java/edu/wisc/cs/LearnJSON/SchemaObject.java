@@ -81,10 +81,6 @@ public class SchemaObject
 		}
 	}
 
-	public SFTA< > asSFTA() {
-
-	}
-
 	public static SchemaObject read(Reader reader) throws JsonParseException, LearnJsonException {
 		JsonStreamParser parser = new JsonStreamParser(reader);
 		JsonElement element = parser.next();
