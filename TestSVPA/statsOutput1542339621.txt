@@ -1,0 +1,2 @@
+Number Membership Queries: 120
+Number Equivalence Queries: 15

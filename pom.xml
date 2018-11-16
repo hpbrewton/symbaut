@@ -18,7 +18,6 @@
         <module>SVPAlib</module>
         <module>TestSVPA</module>
         <module>SVPABenchmark</module>
-    <module>LearnJSON</module>
   </modules>
     
     <repositories>
